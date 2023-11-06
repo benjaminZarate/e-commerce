@@ -1,14 +1,9 @@
-import { View, Text, FlatList } from 'react-native'
-import React, { useEffect, useState } from 'react'
-import Search from '../Components/Search'
-import Header from '../Components/Header'
-import { products } from '../data/products'
+import { View, FlatList } from 'react-native'
+import React from 'react'
 import ProductItem from '../Components/ProductItem'
-import ProductDetail from './ProductDetail'
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { useDispatch, useSelector } from 'react-redux'
-import { setProductsList } from '../redux/slice/homeSlice'
+import { useSelector } from 'react-redux'
 
 const Products = ({text, navigation}) => {
   const allProducts = useSelector(state => state.homeSlice.allProducts);

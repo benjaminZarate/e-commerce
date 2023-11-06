@@ -4,7 +4,6 @@ import { colors } from '../theme/colors'
 import { productsInCart, removeItem } from '../data/cart'
 
 const CartItem = ({item, quantity, setproductsList}) => {
-  const i = productsInCart.findIndex(product => product.item.title == item.title);
   return (
     <Pressable
     onPress={() => {removeItem(item); setproductsList(productsInCart); }}>
