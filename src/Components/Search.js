@@ -13,7 +13,7 @@ const Search = () => {
 
   useEffect(() => {
     if(text) {
-      const titleProduct = allProducts.filter((el) => el.title.toLowerCase().includes(text));
+      const titleProduct = allProducts.filter((el) => el.title.toLowerCase().includes(text.toLowerCase()));
       dispatch(setProductsList(titleProduct));
     }else {
       dispatch(setProductsList(allProducts));  
@@ -25,10 +25,15 @@ const Search = () => {
     dispatch(setProductsList(allProducts));
     setText("");
   }
+
+  const onChangeTextInput = (value) => {
+    setText(value);
+  }
+
   return (
     <View style= {styles.container}>
       <TextInput
-        onChangeText={(value) => setText(value)}
+        onChangeText={onChangeTextInput}
         value={text}
         style={styles.input}
         placeholder='busca un producto aqui'

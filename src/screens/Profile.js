@@ -14,16 +14,11 @@ import { FontAwesome } from "@expo/vector-icons";
 import { Feather } from "@expo/vector-icons";
 import { colors } from "../theme/colors";
 import * as ImagePicker from "expo-image-picker";
-import { usePutImageMutation } from "../services/ecApi";
-import { useGetImageQuery } from "../services/ecApi";
+import { useGetImageQuery, usePutImageMutation } from "../services/ecApi";
 
 
 const Profile = ({ navigation }) => {
-  // const [image, setImage] = useState(null);
-  const [location, setLocation] = useState(null);
-
   const [putImage, result] = usePutImageMutation();
-
   const { data, isLoading, error, isError, refetch } = useGetImageQuery();
 
   const defaultImage =
@@ -37,12 +32,10 @@ const Profile = ({ navigation }) => {
       quality: 1,
       base64: true
     });
-
     if (!result.canceled) {
       await putImage({
         image: `data:image/jpeg;base64,${result.assets[0].base64}`,
-      });
-
+      }).catch(console.log(error));
       refetch();
     }
   };
@@ -54,7 +47,7 @@ const Profile = ({ navigation }) => {
       alert("No le has dado permiso a la Aplicación para acceder a tu cámara!");
       return;
     } else {
-      const result = await ImagePicker.launchCameraAsync({
+      let result = await ImagePicker.launchCameraAsync({
         base64: true,
       });
       if (!result.canceled) {

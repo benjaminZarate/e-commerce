@@ -1,14 +1,15 @@
-import { View, Text, StyleSheet, Pressable } from 'react-native'
+import { View, Text, StyleSheet, Pressable, ToastAndroid } from 'react-native'
 import React from 'react'
 import { Feather } from '@expo/vector-icons';
 import { colors } from '../theme/colors';
-import {productsInCart} from '../data/cart'
+import {addItem, productsInCart} from '../data/cart'
 
 const AddCartButton = ({item}) => {
   return (
     <Pressable
     onPress={() => {
-      productsInCart.push(item);
+      addItem(item);
+      ToastAndroid.showWithGravity(item.title + " fue añadido al carrito", ToastAndroid.LONG, ToastAndroid.BOTTOM);
       }}>
         <View style={styles.container}>
         <Feather name="shopping-cart" size={36} color={colors.white} />

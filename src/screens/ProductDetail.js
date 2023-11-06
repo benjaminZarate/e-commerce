@@ -8,14 +8,16 @@ import { useSelector } from 'react-redux';
 
 const ProductDetail = ({navigation}) => {
   const item = useSelector(state => state.homeSlice.productPressed);
+
   return (
     <View>
       <Header navigation={navigation} title={item.title}/>
-        <Image 
-            width={Dimensions.get('window').width}
-            height={200}
-            source={{uri: item.thumbnail}}/>
         <View style={styles.container}>
+        <Image
+                      height={200}
+                      width={Dimensions.width}
+                      source={{ uri: item.thumbnail}}
+                    />
           <View style={styles.containerTitlePrice}>
             <View>
               <Text style={styles.discountPrice}>${Math.round((item.price * 100) / (100-item.discountPercentage))}</Text>
@@ -34,7 +36,7 @@ const ProductDetail = ({navigation}) => {
 
           </View>
           <Text style={{paddingTop: 10, fontSize:20, fontFamily: "RobotoMono"}}>{item.description}</Text>
-          <AddCartButton/>
+          <AddCartButton item={item}/>
         </View>
     </View>
   )

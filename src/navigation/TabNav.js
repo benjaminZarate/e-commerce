@@ -11,6 +11,7 @@ import RootNavigation from "./RootNavigation";
 import Profile from "../screens/Profile";
 
 import { colors } from "../theme/colors";
+import Cart from "../screens/Cart";
 
 const Tab = createBottomTabNavigator();
 
@@ -22,7 +23,7 @@ const TabNav = () => {
           tabBarIcon: ({ focused }) => (
             <Entypo
               name="shop"
-              size={focused ? 35 : 20}
+              size={focused ? 25 : 20}
               color={focused ? colors.pink : "black"}
             />
           ),
@@ -30,12 +31,23 @@ const TabNav = () => {
         name="rootNavigation"
         component={RootNavigation}
       />
+            <Tab.Screen
+        options={{
+          tabBarIcon: ({ focused }) => (
+            <Entypo name="shopping-cart" 
+            size={focused ? 25 : 20} 
+            color="black" />
+          ),
+        }}
+        name="cart"
+        component={Cart}
+      />
       <Tab.Screen
         options={{
           tabBarIcon: ({ focused }) => (
             <Ionicons
               name="person-circle-outline"
-              size={focused ? 35 : 20}
+              size={focused ? 25 : 20}
               color={focused ? colors.pink : "black"}
             />
           ),

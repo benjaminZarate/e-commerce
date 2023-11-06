@@ -12,7 +12,7 @@ import { firebase_auth } from "../firebase/firebaseAuth";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { useDispatch } from "react-redux";
 import { setIdToken, setUser } from "../redux/slice/authSlice";
-import AsyncStorage from "@react-native-async-storage/async-storage";
+import { AntDesign } from "@expo/vector-icons";
 
 const Login = ({ navigation }) => {
   const dispatch = useDispatch();
@@ -26,7 +26,6 @@ const Login = ({ navigation }) => {
         email,
         password
       );
-      AsyncStorage.setItem("userEmail", response.user.email);
       dispatch(setUser(response.user.email));
       dispatch(setIdToken(response._tokenResponse.idToken));
     } catch (e) {
@@ -37,6 +36,7 @@ const Login = ({ navigation }) => {
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Inicio de Sesión</Text>
+      <AntDesign name="smile-circle" size={24} color="black" />
       <TextInput
         placeholder="Nombre de usuario"
         style={styles.input}
@@ -73,7 +73,7 @@ const styles = StyleSheet.create({
   input: {
     width: "85%",
     height: 50,
-    borderColor: colors.pink,
+    borderColor: colors.lightBlue,
     borderWidth: 2,
     borderRadius: 5,
     marginBottom: 20,
@@ -81,7 +81,7 @@ const styles = StyleSheet.create({
     fontSize: 17,
   },
   button: {
-    backgroundColor: colors.pink,
+    backgroundColor: colors.heavyBlue,
     paddingVertical: 10,
     paddingHorizontal: 20,
     borderRadius: 5,
